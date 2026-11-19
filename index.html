@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CYBER TOM BD Receiver</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;background:#05070e;color:white;
+  font-family:Arial;display:grid;place-items:center;padding:18px
+}
+.card{
+  width:100%;max-width:420px;background:#101522;
+  padding:24px;border-radius:20px;border:1px solid #ff00d4;
+  box-shadow:0 0 25px #ff00d430;text-align:center
+}
+h1{color:#00eaff}
+.codebox{
+  padding:20px;margin:20px 0;background:#070b13;
+  border:1px solid #273c51;border-radius:12px
+}
+#code{font-size:26px;font-weight:bold;color:#00ff9d}
+button{
+  width:100%;padding:14px;margin-top:12px;
+  border:0;border-radius:10px;font-weight:bold;font-size:15px
+}
+.test{background:#00dfff;color:#001018}
+.ok{background:#00ff9d;color:#00150b}
+.reject{background:#ff4266;color:white}
+.status{
+  margin-top:18px;padding:14px;background:#070b13;
+  border-radius:10px;color:#a5eaff
+}
+.overlay{
+  display:none;position:fixed;inset:0;background:#000b;
+  justify-content:center;align-items:center;padding:20px
+}
+.popup{
+  width:100%;max-width:340px;padding:24px;
+  border-radius:18px;background:#111b2a;
+  border:1px solid #00eaff;text-align:center;
+  box-shadow:0 0 30px #00eaff50
+}
+.popup h2{color:#00eaff}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>CYBER TOM BD</h1>
+  <p>RECEIVER PANEL</p>
+
+  <div class="codebox">
+    YOUR PAIRING CODE
+    <br><br>
+    <span id="code"></span>
+  </div>
+
+  <button class="test" onclick="testRequest()">TEST POPUP</button>
+
+  <div class="status" id="status">STATUS: STANDBY</div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="popup">
+    <h2>Incoming Request</h2>
+    <p>একটি নতুন Demo Request এসেছে।</p>
+
+    <button class="ok" onclick="approve()">OK / APPROVE</button>
+    <button class="reject" onclick="reject()">REJECT</button>
+  </div>
+</div>
+
+<script>
+function generateCode(){
+  const n = Math.floor(100000 + Math.random() * 900000);
+  return "TOM-" + n;
+}
+
+document.getElementById("code").textContent = generateCode();
+
+function testRequest(){
+  document.getElementById("overlay").style.display = "flex";
+  document.getElementById("status").textContent = "REQUEST RECEIVED (DEMO)";
+}
+
+function approve(){
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("status").textContent = "APPROVED (LOCAL DEMO)";
+}
+
+function reject(){
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("status").textContent = "REQUEST REJECTED";
+}
+</script>
+
+</body>
+</html>
